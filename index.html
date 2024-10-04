@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador de Convites</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fontes Montserrat e Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Imagem de Capa -->
+        <div class="header-image">
+            <img src="astcemp.webp" alt="Imagem de Capa">
+        </div>
+
+        <!-- Seção do Formulário (Div Responsiva) -->
+        <div class="form-section">
+            <!-- Data do Evento -->
+            <div class="form-group">
+                <label for="event-date">Data do Evento:</label>
+                <input type="date" id="event-date" required>
+                <span class="error-message" id="date-error">Por favor, selecione a data do evento.</span>
+            </div>
+
+            <!-- Lista de Convidados -->
+            <div class="guest-list">
+                <label>Convidados:</label>
+                <div id="guest-inputs">
+                    <!-- Campos de convidados serão adicionados aqui -->
+                </div>
+                <button type="button" id="add-guest-btn">
+                    <!-- Ícone de "+" -->
+                    <svg width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 1v14M1 8h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Adicionar Convidado
+                </button>
+                <span class="error-message" id="guest-error"></span>
+            </div>
+
+            <!-- Botão Gerar Convite -->
+            <button type="button" id="generate-invite-btn">Gerar Convite</button>
+        </div>
+
+        <!-- Seção do Convite Gerado -->
+        <div class="invitation-section" id="invitation-section">
+            <!-- Convite gerado será exibido aqui -->
+        </div>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

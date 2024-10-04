@@ -1,0 +1,237 @@
+/* Fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Imagem de Capa */
+.header-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 20px;
+}
+
+.header-image img {
+    width: 100%;
+    display: block;
+}
+
+/* Seção do Formulário */
+.form-section {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.form-section label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group,
+.guest-list {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+input[type="date"],
+.guest-name {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+    margin-top: 5px;
+}
+
+#guest-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.guest-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.guest-input .guest-name {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.remove-guest-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.remove-guest-btn svg {
+    stroke: #dc3545;
+}
+
+#add-guest-btn {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#add-guest-btn svg {
+    margin-right: 5px;
+    stroke: #fff;
+}
+
+#add-guest-btn:hover {
+    background-color: #0056b3;
+}
+
+#generate-invite-btn {
+    width: 100%;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#generate-invite-btn:hover {
+    background-color: #218838;
+}
+
+/* Seção do Convite Gerado */
+.invitation-section {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+.invitation-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.invitation-section p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.invitation-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.invitation-section ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Efeitos de Hover e Sombras */
+input[type="date"]:focus,
+.guest-name:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+#generate-invite-btn:focus,
+#add-guest-btn:focus,
+.remove-guest-btn:focus {
+    outline: none;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-section {
+        padding: 15px;
+    }
+
+    .guest-input {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .guest-input .guest-name {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    #add-guest-btn {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    #generate-invite-btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .invitation-section h2 {
+        font-size: 20px;
+    }
+
+    .invitation-section p,
+    .invitation-section ul li {
+        font-size: 14px;
+    }
+
+    .header-image img {
+        border-radius: 10px 10px 0 0;
+    }
+}
+
+/* Div menor para smartphone */
+@media (max-width: 400px) {
+    .form-section {
+        padding: 10px;
+    }
+
+    input[type="date"],
+    .guest-name {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #add-guest-btn,
+    #generate-invite-btn {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .invitation-section {
+        padding: 15px;
+    }
+}
