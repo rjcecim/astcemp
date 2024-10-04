@@ -12,9 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let invitationGenerated = false;
     let invitationText = '';
 
+    const maxGuests = 4; // Alterado para 4 convidados
+
     function updateGuestError() {
-        if (guestCount >= 10) {
-            guestError.textContent = 'Limite de 10 convidados atingido.';
+        if (guestCount >= maxGuests) {
+            guestError.textContent = `Limite de ${maxGuests} convidados atingido.`;
             guestError.style.display = 'block';
         } else {
             guestError.style.display = 'none';
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addGuestInput() {
-        if (guestCount >= 10) {
+        if (guestCount >= maxGuests) {
             updateGuestError();
             return;
         }

@@ -1,39 +1,48 @@
 /* Fonte do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
 
-body {
-    font-family: 'Roboto', sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
     background-color: #f7f7f7;
 }
 
 .container {
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    box-sizing: border-box;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Imagem de Capa */
 .header-image {
     width: 100%;
     overflow: hidden;
-    border-radius: 20px 20px 0 0;
-    margin-bottom: 20px;
+    border-radius: 0 0 0 0; /* Remove bordas arredondadas para tela cheia */
+    margin-bottom: 0;
 }
 
 .header-image img {
     width: 100%;
+    height: auto;
     display: block;
 }
 
-/* Seção do Formulário */
 .form-section {
     background-color: #fff;
     padding: 20px;
+    flex: 1;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    border-radius: 4px;
+    border-radius: 0; /* Remove bordas arredondadas para tela cheia */
+    box-sizing: border-box;
 }
 
 .form-section label {
@@ -54,6 +63,7 @@ input[type="date"],
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .error-message {
@@ -152,12 +162,12 @@ input[type="date"],
     background: #cccccc;
 }
 
-/* Seção do Convite Gerado */
 .invitation-section {
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 4px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-radius: 0; /* Remove bordas arredondadas para tela cheia */
+    box-sizing: border-box;
 }
 
 .invitation-section h2 {
@@ -198,7 +208,7 @@ input[type="date"]:focus,
 /* Responsividade */
 @media (max-width: 600px) {
     .container {
-        padding: 10px;
+        padding: 0;
     }
 
     .form-section {
@@ -232,12 +242,20 @@ input[type="date"]:focus,
     }
 
     .header-image img {
-        border-radius: 10px 10px 0 0;
+        border-radius: 0;
     }
 }
 
-/* Div menor para smartphone */
+/* Div para tela cheia em smartphones */
 @media (max-width: 400px) {
+    html, body {
+        height: 100%;
+    }
+
+    .container {
+        padding: 0;
+    }
+
     .form-section {
         padding: 10px;
     }
