@@ -90,41 +90,66 @@ input[type="date"],
     stroke: #dc3545;
 }
 
-#add-guest-btn {
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#add-guest-btn,
+#generate-invite-btn,
+#send-invite-btn {
     display: flex;
     align-items: center;
-    background-color: #007bff;
+    background: linear-gradient(45deg, #007bff, #0056b3);
     color: #fff;
     border: none;
     padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    flex: 1;
+    justify-content: center;
+    transition: background 0.3s ease;
 }
 
-#add-guest-btn svg {
+#generate-invite-btn {
+    background: linear-gradient(45deg, #28a745, #218838);
+}
+
+#send-invite-btn {
+    background: linear-gradient(45deg, #25D366, #1DA851); /* Cor do WhatsApp */
+}
+
+#add-guest-btn svg,
+#generate-invite-btn svg,
+#send-invite-btn svg {
     margin-right: 5px;
     stroke: #fff;
 }
 
 #add-guest-btn:hover {
-    background-color: #0056b3;
-}
-
-#generate-invite-btn {
-    width: 100%;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 10px;
+    background: linear-gradient(45deg, #0056b3, #003f7f);
 }
 
 #generate-invite-btn:hover {
-    background-color: #218838;
+    background: linear-gradient(45deg, #218838, #1e7e34);
+}
+
+#send-invite-btn:hover {
+    background: linear-gradient(45deg, #1DA851, #128C7E);
+}
+
+#generate-invite-btn:disabled,
+#send-invite-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+#generate-invite-btn:disabled:hover,
+#send-invite-btn:disabled:hover {
+    background: #cccccc;
 }
 
 /* Seção do Convite Gerado */
@@ -165,6 +190,7 @@ input[type="date"]:focus,
 
 #generate-invite-btn:focus,
 #add-guest-btn:focus,
+#send-invite-btn:focus,
 .remove-guest-btn:focus {
     outline: none;
 }
@@ -189,14 +215,11 @@ input[type="date"]:focus,
         margin-bottom: 10px;
     }
 
-    #add-guest-btn {
+    #add-guest-btn,
+    #generate-invite-btn,
+    #send-invite-btn {
         font-size: 14px;
         padding: 8px 10px;
-    }
-
-    #generate-invite-btn {
-        font-size: 16px;
-        padding: 12px;
     }
 
     .invitation-section h2 {
@@ -226,7 +249,8 @@ input[type="date"]:focus,
     }
 
     #add-guest-btn,
-    #generate-invite-btn {
+    #generate-invite-btn,
+    #send-invite-btn {
         padding: 10px;
         font-size: 14px;
     }

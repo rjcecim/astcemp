@@ -2,12 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const addGuestBtn = document.getElementById('add-guest-btn');
     const guestInputsDiv = document.getElementById('guest-inputs');
     const generateInviteBtn = document.getElementById('generate-invite-btn');
+    const sendInviteBtn = document.getElementById('send-invite-btn');
     const invitationSection = document.getElementById('invitation-section');
     const dateInput = document.getElementById('event-date');
     const dateError = document.getElementById('date-error');
     const guestError = document.getElementById('guest-error');
 
     let guestCount = 0;
+    let invitationGenerated = false;
+    let invitationText = '';
 
     function updateGuestError() {
         if (guestCount >= 10) {
@@ -127,7 +130,35 @@ document.addEventListener('DOMContentLoaded', function() {
             guestList.appendChild(listItem);
         });
         invitationSection.appendChild(guestList);
+
+        // Criar texto do convite para enviar via WhatsApp com formatação
+        invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n`;
+        guestNames.forEach(function(name) {
+            invitationText += `- ${name}\n`;
+        });
+
+        invitationGenerated = true;
+        sendInviteBtn.disabled = false;
     });
+
+    sendInviteBtn.addEventListener('click', function() {
+        if (!invitationGenerated) {
+            alert('Por favor, gere o convite antes de enviar.');
+            return;
+        }
+
+        // Codificar o texto do convite para URI
+        const encodedText = encodeURIComponent(invitationText);
+
+        // URL do WhatsApp
+        const whatsappURL = `https://api.whatsapp.com/send?text=${encodedText}`;
+
+        // Abrir o WhatsApp em uma nova janela
+        window.open(whatsappURL, '_blank');
+    });
+
+    // Desabilitar o botão "Enviar Convite" inicialmente
+    sendInviteBtn.disabled = true;
 
     // Adicionar primeiro campo de convidado ao carregar a página
     addGuestInput();
