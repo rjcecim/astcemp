@@ -1,27 +1,115 @@
-/* Importação de Fontes */
+/* Importação das fontes */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
 }
 
-.card-title {
+.header-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.form-section {
+    padding: 20px;
+}
+
+.form-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
 }
 
-/* Imagem de Capa */
-.header-image img {
-    width: 100%;
-    height: auto;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+.btn-primary {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border: none;
+    transition: background 0.3s ease;
 }
 
-/* Seção do Convite Gerado */
+.btn-primary:hover {
+    background: linear-gradient(45deg, #0056b3, #003f7f);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #28a745, #218838);
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(45deg, #218838, #1e7e34);
+}
+
+.btn-send-whatsapp {
+    background: linear-gradient(45deg, #25D366, #1DA851);
+}
+
+.btn-send-whatsapp:hover {
+    background: linear-gradient(45deg, #1DA851, #128C7E);
+}
+
+.invalid-feedback {
+    display: none;
+    color: red;
+}
+
+input.is-invalid {
+    border-color: red;
+}
+
 .invitation-section {
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 600px) {
+    .container-fluid {
+        padding: 0;
+    }
+
+    .header-image img {
+        border-radius: 0;
+    }
+
+    .form-section {
+        padding: 15px;
+    }
+
+    .form-label {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .invitation-section {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    html, body {
+        height: 100%;
+    }
+
+    .form-section {
+        padding: 10px;
+    }
+
+    input.form-control {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
     .invitation-section {
         padding: 10px;
     }
