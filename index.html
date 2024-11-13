@@ -30,37 +30,32 @@
             <div class="w-100">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Gerador de Convites</h2>
                         <!-- Data do Evento -->
                         <div class="mb-3">
-                            <label for="event-date" class="form-label">Data do Evento<span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" id="event-date" required>
-                            <div class="invalid-feedback">
-                                Por favor, selecione a data do evento.
-                            </div>
+                            <label for="event-date" class="form-label">Data do Evento:</label>
+                            <input type="date" id="event-date" class="form-control" required>
+                            <div class="text-danger mt-1" id="date-error" style="display:none;">Por favor, selecione a data do evento.</div>
                         </div>
 
                         <!-- Lista de Convidados -->
                         <div class="mb-3">
-                            <label class="form-label">Convidados<span class="text-danger">*</span></label>
-                            <div id="guest-inputs" class="mb-2">
+                            <label class="form-label">Convidados:</label>
+                            <div id="guest-inputs">
                                 <!-- Campos de convidados serão adicionados aqui -->
                             </div>
-                            <button type="button" id="add-guest-btn" class="btn btn-primary btn-sm mb-2">
-                                <i class="bi bi-plus-lg"></i> Adicionar Convidado
-                            </button>
-                            <div class="text-danger" id="guest-error" style="display: none;">
-                                Limite de 4 convidados atingido.
-                            </div>
+                            <div class="text-danger mt-1" id="guest-error" style="display:none;"></div>
                         </div>
 
                         <!-- Botões de Ação -->
-                        <div class="d-flex flex-wrap gap-2">
-                            <button type="button" id="generate-invite-btn" class="btn btn-success flex-fill">
-                                <i class="bi bi-envelope-fill"></i> Gerar Convite
+                        <div class="d-flex gap-2">
+                            <button type="button" id="add-guest-btn" class="btn btn-primary d-flex align-items-center">
+                                <i class="bi bi-plus me-2"></i>Adicionar Convidado
                             </button>
-                            <button type="button" id="send-invite-btn" class="btn btn-success flex-fill" disabled>
-                                <i class="bi bi-whatsapp"></i> Enviar Convite
+                            <button type="button" id="generate-invite-btn" class="btn btn-success d-flex align-items-center">
+                                <i class="bi bi-card-text me-2"></i>Gerar Convite
+                            </button>
+                            <button type="button" id="send-invite-btn" class="btn btn-success d-flex align-items-center" disabled>
+                                <i class="bi bi-whatsapp me-2"></i>Enviar Convite
                             </button>
                         </div>
                     </div>
@@ -69,26 +64,12 @@
         </div>
 
         <!-- Seção do Convite Gerado -->
-        <div class="invitation-section">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h2 class="card-title text-center">Convite</h2>
-                    <p><strong>Nome do Associado:</strong> Ruy Jorge Cecim Santos</p>
-                    <p><strong>Matrícula do Sócio:</strong> 0101093</p>
-                    <p><strong>Data do Evento:</strong> <span id="formatted-date">--/--/----</span></p>
-                    <p><strong>Lista de Convidados:</strong></p>
-                    <ul id="guest-list">
-                        <!-- Lista de convidados -->
-                    </ul>
-                </div>
-            </div>
+        <div class="invitation-section p-3" id="invitation-section">
+            <!-- Convite gerado será exibido aqui -->
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS e Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Script Personalizado -->
+    <!-- Script JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
