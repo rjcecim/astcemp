@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const guestError = document.getElementById('guest-error');
 
     const maxGuests = 4;
-    let guestCount = 0;
+    let guestCount = 1; // Começa com 1 porque o primeiro convidado já está presente
     let invitationGenerated = false;
     let invitationText = '';
 
@@ -41,21 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const appendBtn = document.createElement('button');
         appendBtn.type = 'button';
         appendBtn.classList.add('btn', 'btn-outline-secondary', 'append-btn');
+        appendBtn.innerHTML = '<i class="bi bi-dash"></i>';
+        appendBtn.title = 'Remover Convidado';
 
-        // Define ícone de adição ou remoção
-        if (guestCount === 0) {
-            appendBtn.innerHTML = '<i class="bi bi-plus"></i>';
-            appendBtn.title = 'Adicionar Convidado';
-            appendBtn.addEventListener('click', addGuestInput);
-        } else {
-            appendBtn.innerHTML = '<i class="bi bi-dash"></i>';
-            appendBtn.title = 'Remover Convidado';
-            appendBtn.addEventListener('click', () => {
-                guestInputsDiv.removeChild(guestInputGroup);
-                guestCount--;
-                updateGuestError();
-            });
-        }
+        appendBtn.addEventListener('click', () => {
+            guestInputsDiv.removeChild(guestInputGroup);
+            guestCount--;
+            updateGuestError();
+        });
 
         guestInputGroup.appendChild(guestInput);
         guestInputGroup.appendChild(appendBtn);
@@ -64,24 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         guestCount++;
         updateGuestError();
-
-        // Se já atingiu o máximo, desativa o botão de adicionar
-        if (guestCount >= maxGuests) {
-            // Remove o evento de adicionar do primeiro botão
-            const firstAddBtn = guestInputsDiv.querySelector('.append-btn');
-            if (firstAddBtn) {
-                firstAddBtn.removeEventListener('click', addGuestInput);
-                firstAddBtn.innerHTML = '<i class="bi bi-dash"></i>';
-                firstAddBtn.title = 'Remover Convidado';
-                firstAddBtn.removeEventListener('click', addGuestInput);
-                firstAddBtn.addEventListener('click', () => {
-                    guestInputsDiv.removeChild(guestInputGroup);
-                    guestCount--;
-                    updateGuestError();
-                });
-            }
-        }
     };
+
+    // Evento para adicionar convidados via botão de adição
+    const addGuestBtn = document.getElementById('add-guest-btn');
+    addGuestBtn.addEventListener('click', addGuestInput);
 
     // Função para gerar o convite
     const generateInvite = () => {
@@ -150,6 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sendInviteBtn.disabled = false;
     };
 
+    // Evento para gerar convite
+    generateInviteBtn.addEventListener('click', generateInvite);
+
     // Função para enviar o convite via WhatsApp
     const sendInvite = () => {
         if (!invitationGenerated) {
@@ -163,12 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(whatsappURL, '_blank');
     };
 
-    // Evento para gerar convite
-    generateInviteBtn.addEventListener('click', generateInvite);
-
     // Evento para enviar convite
     sendInviteBtn.addEventListener('click', sendInvite);
 
-    // Inicializar com o primeiro campo de convidado
-    addGuestInput();
+    // Inicializar com o primeiro campo de convidado (fixo)
+    // O primeiro campo já está presente no HTML e não deve ser removido
+    // Apenas adicionamos um listener para o botão bi-plus do primeiro campo
 });

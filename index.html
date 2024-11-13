@@ -44,7 +44,13 @@
                             <div class="mb-3">
                                 <label class="form-label">Convidados:</label>
                                 <div id="guest-inputs" class="mb-2">
-                                    <!-- Campos de convidados serão adicionados aqui -->
+                                    <!-- Primeiro Convidado (Fixado) -->
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control guest-name" placeholder="Nome do Convidado" required>
+                                        <button type="button" class="btn btn-outline-secondary" id="add-guest-btn" title="Adicionar Convidado">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="invalid-feedback d-block" id="guest-error">
                                     Limite de 4 convidados atingido.
