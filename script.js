@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Criar o texto do convite com formatação para WhatsApp
-        invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n`;
+        invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim dos Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n`;
         guestNames.forEach(name => {
             invitationText += `- ${name}\n`;
         });
