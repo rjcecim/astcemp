@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gerar o conteúdo do convite na página
         invitationSection.innerHTML = `
             <h2>Convite</h2>
-            <p><strong>Nome do Associado:</strong> Ruy Jorge Cecim Santos</p>
+            <p><strong>Nome do Associado:</strong> Ruy Jorge Cecim dos Santos</p>
             <p><strong>Matrícula do Sócio:</strong> 0101093</p>
             <p><strong>Data do Evento:</strong> ${formattedDate}</p>
             <p><strong>Lista de Convidados:</strong></p>
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         // Gerar o texto do convite para enviar via WhatsApp com formatação
-        invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n${guestNames.map(name => `- ${name}`).join('\n')}`;
+        invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim dos Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n${guestNames.map(name => `- ${name}`).join('\n')}`;
 
         invitationGenerated = true;
         sendInviteBtn.disabled = false;
