@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const addGuestBtn = document.getElementById('add-guest-btn');
     const guestInputsDiv = document.getElementById('guest-inputs');
     const generateInviteBtn = document.getElementById('generate-invite-btn');
     const sendInviteBtn = document.getElementById('send-invite-btn');
@@ -68,13 +67,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Se já atingiu o máximo, desativa o botão de adicionar
         if (guestCount >= maxGuests) {
-            addGuestBtn.disabled = true;
-            addGuestBtn.classList.add('disabled');
+            // Remove o evento de adicionar do primeiro botão
+            const firstAddBtn = guestInputsDiv.querySelector('.append-btn');
+            if (firstAddBtn) {
+                firstAddBtn.removeEventListener('click', addGuestInput);
+                firstAddBtn.innerHTML = '<i class="bi bi-dash"></i>';
+                firstAddBtn.title = 'Remover Convidado';
+                firstAddBtn.removeEventListener('click', addGuestInput);
+                firstAddBtn.addEventListener('click', () => {
+                    guestInputsDiv.removeChild(guestInputGroup);
+                    guestCount--;
+                    updateGuestError();
+                });
+            }
         }
     };
-
-    // Evento para adicionar convidados via botão principal
-    addGuestBtn.addEventListener('click', addGuestInput);
 
     // Função para gerar o convite
     const generateInvite = () => {
@@ -143,9 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sendInviteBtn.disabled = false;
     };
 
-    // Evento para gerar convite
-    generateInviteBtn.addEventListener('click', generateInvite);
-
     // Função para enviar o convite via WhatsApp
     const sendInvite = () => {
         if (!invitationGenerated) {
@@ -158,6 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.open(whatsappURL, '_blank');
     };
+
+    // Evento para gerar convite
+    generateInviteBtn.addEventListener('click', generateInvite);
 
     // Evento para enviar convite
     sendInviteBtn.addEventListener('click', sendInvite);

@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container-fluid min-vh-100 d-flex flex-column">
+    <div class="container-fluid min-vh-100 d-flex flex-column p-0">
         <!-- Imagem de Capa -->
         <div class="header-image">
-            <img src="astcemp.webp" alt="Imagem de Capa" class="img-fluid">
+            <img src="astcemp.webp" alt="Imagem de Capa" class="img-fluid w-100">
         </div>
 
         <!-- Seção do Formulário -->
@@ -46,18 +46,13 @@
                                 <div id="guest-inputs" class="mb-2">
                                     <!-- Campos de convidados serão adicionados aqui -->
                                 </div>
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary" id="add-guest-btn">
-                                        <i class="bi bi-plus-circle me-1"></i> Adicionar Convidado
-                                    </button>
-                                </div>
                                 <div class="invalid-feedback d-block" id="guest-error">
                                     Limite de 4 convidados atingido.
                                 </div>
                             </div>
 
                             <!-- Botões de Ação -->
-                            <div class="d-flex justify-content-center gap-2">
+                            <div class="d-flex justify-content-center gap-2 mt-3">
                                 <button type="button" class="btn btn-success" id="generate-invite-btn">
                                     <i class="bi bi-card-text me-1"></i> Gerar Convite
                                 </button>

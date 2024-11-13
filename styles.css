@@ -4,6 +4,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
 }
 
 .header-image img {
@@ -93,9 +95,9 @@ input[type="date"]:focus,
 }
 
 #generate-invite-btn:focus,
-#add-guest-btn:focus,
 #send-invite-btn:focus,
-.remove-guest-btn:focus {
+.remove-guest-btn:focus,
+.append-btn:focus {
     outline: none;
 }
 
