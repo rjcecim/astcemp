@@ -39,27 +39,41 @@ document.addEventListener('DOMContentLoaded', () => {
         guestInput.placeholder = 'Nome do Convidado';
         guestInput.required = true;
 
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.classList.add('btn', 'btn-outline-danger');
-        removeBtn.innerHTML = '<i class="bi bi-trash"></i>';
+        const appendBtn = document.createElement('button');
+        appendBtn.type = 'button';
+        appendBtn.classList.add('btn', 'btn-outline-secondary', 'append-btn');
 
-        removeBtn.addEventListener('click', () => {
-            guestInputsDiv.removeChild(guestInputGroup);
-            guestCount--;
-            updateGuestError();
-        });
+        // Define ícone de adição ou remoção
+        if (guestCount === 0) {
+            appendBtn.innerHTML = '<i class="bi bi-plus"></i>';
+            appendBtn.title = 'Adicionar Convidado';
+            appendBtn.addEventListener('click', addGuestInput);
+        } else {
+            appendBtn.innerHTML = '<i class="bi bi-dash"></i>';
+            appendBtn.title = 'Remover Convidado';
+            appendBtn.addEventListener('click', () => {
+                guestInputsDiv.removeChild(guestInputGroup);
+                guestCount--;
+                updateGuestError();
+            });
+        }
 
         guestInputGroup.appendChild(guestInput);
-        guestInputGroup.appendChild(removeBtn);
+        guestInputGroup.appendChild(appendBtn);
 
         guestInputsDiv.appendChild(guestInputGroup);
 
         guestCount++;
         updateGuestError();
+
+        // Se já atingiu o máximo, desativa o botão de adicionar
+        if (guestCount >= maxGuests) {
+            addGuestBtn.disabled = true;
+            addGuestBtn.classList.add('disabled');
+        }
     };
 
-    // Evento para adicionar convidados
+    // Evento para adicionar convidados via botão principal
     addGuestBtn.addEventListener('click', addGuestInput);
 
     // Função para gerar o convite
@@ -148,6 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Evento para enviar convite
     sendInviteBtn.addEventListener('click', sendInvite);
 
-    // Inicializar com um campo de convidado
+    // Inicializar com o primeiro campo de convidado
     addGuestInput();
 });
