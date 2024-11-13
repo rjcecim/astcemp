@@ -4,33 +4,42 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f7f7f7;
-    margin: 0;
-    padding: 0;
 }
 
-.header-image img {
+header img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.form-section {
-    padding: 20px;
+main form {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
-.form-label {
+fieldset {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+}
+
+legend {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
 }
 
-.btn-primary {
-    background: linear-gradient(45deg, #007bff, #0056b3);
-    border: none;
-    transition: background 0.3s ease;
+input:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
 
-.btn-primary:hover {
-    background: linear-gradient(45deg, #0056b3, #003f7f);
+.invalid-feedback {
+    display: none;
+}
+
+input.is-invalid ~ .invalid-feedback {
+    display: block;
+    color: red;
 }
 
 .btn-success {
@@ -43,76 +52,26 @@ body {
     background: linear-gradient(45deg, #218838, #1e7e34);
 }
 
-.btn-send-whatsapp {
-    background: linear-gradient(45deg, #25D366, #1DA851);
+.btn-outline-secondary {
+    background: none;
+    border: none;
+    color: #6c757d;
 }
 
-.btn-send-whatsapp:hover {
-    background: linear-gradient(45deg, #1DA851, #128C7E);
+.btn-outline-secondary:hover {
+    color: #495057;
+    background: none;
 }
 
-.invalid-feedback {
-    display: none;
-    color: red;
-}
-
-input.is-invalid {
-    border-color: red;
-}
-
-.invitation-section {
-    padding: 20px;
+section {
     background-color: #fff;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
-.invitation-section h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.invitation-section p {
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.invitation-section ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.invitation-section ul li {
-    margin-bottom: 5px;
-    font-size: 16px;
-}
-
-/* Efeitos de Hover e Sombras */
-input[type="date"]:focus,
-.guest-name:focus {
-    border-color: #80bdff;
-    outline: none;
-}
-
-#generate-invite-btn:focus,
-#send-invite-btn:focus,
-.remove-guest-btn:focus,
-.append-btn:focus {
-    outline: none;
-}
-
-/* Responsividade */
 @media (max-width: 600px) {
-    .container-fluid {
-        padding: 0;
-    }
-
-    .form-section {
+    main form {
         padding: 15px;
-    }
-
-    .form-label {
-        font-size: 1rem;
     }
 
     .btn {
@@ -120,22 +79,13 @@ input[type="date"]:focus,
         padding: 8px 10px;
     }
 
-    .invitation-section {
+    section {
         padding: 15px;
-    }
-
-    .header-image img {
-        border-radius: 0;
     }
 }
 
-/* Div para tela cheia em smartphones */
 @media (max-width: 400px) {
-    html, body {
-        height: 100%;
-    }
-
-    .form-section {
+    main form {
         padding: 10px;
     }
 
@@ -149,7 +99,7 @@ input[type="date"]:focus,
         font-size: 0.9rem;
     }
 
-    .invitation-section {
+    section {
         padding: 10px;
     }
 }
