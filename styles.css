@@ -64,13 +64,45 @@ input.is-invalid {
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
+.invitation-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.invitation-section p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.invitation-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.invitation-section ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Efeitos de Hover e Sombras */
+input[type="date"]:focus,
+.guest-name:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+#generate-invite-btn:focus,
+#add-guest-btn:focus,
+#send-invite-btn:focus,
+.remove-guest-btn:focus {
+    outline: none;
+}
+
+/* Responsividade */
 @media (max-width: 600px) {
     .container-fluid {
         padding: 0;
-    }
-
-    .header-image img {
-        border-radius: 0;
     }
 
     .form-section {
@@ -89,8 +121,13 @@ input.is-invalid {
     .invitation-section {
         padding: 15px;
     }
+
+    .header-image img {
+        border-radius: 0;
+    }
 }
 
+/* Div para tela cheia em smartphones */
 @media (max-width: 400px) {
     html, body {
         height: 100%;
