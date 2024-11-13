@@ -1,17 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const addGuestBtn = document.getElementById('add-guest-btn');
     const guestInputsDiv = document.getElementById('guest-inputs');
     const generateInviteBtn = document.getElementById('generate-invite-btn');
     const sendInviteBtn = document.getElementById('send-invite-btn');
-    const invitationSection = document.querySelector('section');
+    const invitationSection = document.querySelector('.invitation-section');
     const dateInput = document.getElementById('event-date');
     const dateError = document.getElementById('date-error');
     const guestError = document.getElementById('guest-error');
-    const formattedDateSpan = document.getElementById('formatted-date');
-    const guestListUl = document.getElementById('guest-list');
 
     const maxGuests = 4;
-    let guestCount = 1; // Inicia com 1 pois o primeiro convidado já está presente
+    let guestCount = 1; // Começa com 1 porque o primeiro convidado já está presente
     let invitationGenerated = false;
     let invitationText = '';
 
@@ -20,10 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (guestCount >= maxGuests) {
             guestError.style.display = 'block';
             guestError.textContent = `Limite de ${maxGuests} convidados atingido.`;
-            addGuestBtn.disabled = true;
         } else {
             guestError.style.display = 'none';
-            addGuestBtn.disabled = false;
         }
     };
 
@@ -35,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const guestInputGroup = document.createElement('div');
-        guestInputGroup.classList.add('input-group', 'mb-3');
+        guestInputGroup.classList.add('input-group', 'mb-2');
 
         const guestInput = document.createElement('input');
         guestInput.type = 'text';
@@ -43,28 +38,44 @@ document.addEventListener('DOMContentLoaded', () => {
         guestInput.placeholder = 'Nome do Convidado';
         guestInput.required = true;
 
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.classList.add('btn', 'btn-outline-secondary');
-        removeBtn.title = 'Remover Convidado';
-        removeBtn.innerHTML = '<i class="bi bi-dash"></i>';
+        const appendBtn = document.createElement('button');
+        appendBtn.type = 'button';
+        appendBtn.classList.add('btn', 'btn-outline-secondary', 'append-btn');
+        appendBtn.innerHTML = '<i class="bi bi-dash"></i>';
+        appendBtn.title = 'Remover Convidado';
 
-        removeBtn.addEventListener('click', () => {
+        appendBtn.addEventListener('click', () => {
             guestInputsDiv.removeChild(guestInputGroup);
             guestCount--;
             updateGuestError();
+            // Reabilitar o botão de adicionar caso o limite foi anteriormente atingido
+            const firstAddBtn = document.getElementById('add-guest-btn');
+            if (firstAddBtn && firstAddBtn.disabled && guestCount < maxGuests) {
+                firstAddBtn.disabled = false;
+                firstAddBtn.classList.remove('disabled');
+            }
         });
 
         guestInputGroup.appendChild(guestInput);
-        guestInputGroup.appendChild(removeBtn);
+        guestInputGroup.appendChild(appendBtn);
 
         guestInputsDiv.appendChild(guestInputGroup);
 
         guestCount++;
         updateGuestError();
+
+        // Se já atingiu o máximo, desativa o botão de adicionar no primeiro convidado
+        if (guestCount >= maxGuests) {
+            const firstAddBtn = document.getElementById('add-guest-btn');
+            if (firstAddBtn) {
+                firstAddBtn.disabled = true;
+                firstAddBtn.classList.add('disabled');
+            }
+        }
     };
 
     // Evento para adicionar convidados via botão de adição
+    const addGuestBtn = document.getElementById('add-guest-btn');
     addGuestBtn.addEventListener('click', addGuestInput);
 
     // Função para gerar o convite
@@ -114,24 +125,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // Formatar data para DD/MM/AAAA
         const dateParts = dateInput.value.split('-');
         const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-        formattedDateSpan.textContent = formattedDate;
 
-        // Gerar a lista de convidados na página
-        guestListUl.innerHTML = '';
-        guestNames.forEach(name => {
-            const li = document.createElement('li');
-            li.textContent = name;
-            guestListUl.appendChild(li);
-        });
+        // Gerar o conteúdo do convite na página
+        invitationSection.innerHTML = `
+            <h2>Convite</h2>
+            <p><strong>Nome do Associado:</strong> Ruy Jorge Cecim Santos</p>
+            <p><strong>Matrícula do Sócio:</strong> 0101093</p>
+            <p><strong>Data do Evento:</strong> ${formattedDate}</p>
+            <p><strong>Lista de Convidados:</strong></p>
+            <ul>
+                ${guestNames.map(name => `<li>${name}</li>`).join('')}
+            </ul>
+        `;
 
         // Gerar o texto do convite para enviar via WhatsApp com formatação
-        invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim dos Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n${guestNames.map(name => `- ${name}`).join('\n')}`;
+        invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n${guestNames.map(name => `- ${name}`).join('\n')}`;
 
         invitationGenerated = true;
         sendInviteBtn.disabled = false;
-
-        // Scroll para a seção do convite gerado
-        invitationSection.scrollIntoView({ behavior: 'smooth' });
     };
 
     // Evento para gerar convite
@@ -152,8 +163,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Evento para enviar convite
     sendInviteBtn.addEventListener('click', sendInvite);
-
-    // Inicializar com o primeiro campo de convidado (fixo)
-    // O primeiro campo já está presente no HTML e não deve ser removido
-    // Apenas adicionamos um listener para o botão bi-plus do primeiro campo
 });
