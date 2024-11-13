@@ -1,279 +1,28 @@
-/* Fonte do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
+/* Importação de Fontes */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f7f7f7;
 }
 
-.container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
-.header-image {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 0 0 0 0; /* Remove bordas arredondadas para tela cheia */
-    margin-bottom: 0;
-}
-
+/* Imagem de Capa */
 .header-image img {
     width: 100%;
     height: auto;
-    display: block;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.form-section {
-    background-color: #fff;
-    padding: 20px;
-    flex: 1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 0; /* Remove bordas arredondadas para tela cheia */
-    box-sizing: border-box;
-}
-
-.form-section label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.form-group,
-.guest-list {
-    margin-bottom: 20px;
-    position: relative;
-}
-
-input[type="date"],
-.guest-name {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.error-message {
-    color: red;
-    font-size: 14px;
-    display: none;
-    margin-top: 5px;
-}
-
-#guest-inputs {
-    display: flex;
-    flex-direction: column;
-}
-
-.guest-input {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.guest-input .guest-name {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.remove-guest-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-}
-
-.remove-guest-btn svg {
-    stroke: #dc3545;
-}
-
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-#add-guest-btn,
-#generate-invite-btn,
-#send-invite-btn {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(45deg, #007bff, #0056b3);
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    flex: 1;
-    justify-content: center;
-    transition: background 0.3s ease;
-}
-
-#generate-invite-btn {
-    background: linear-gradient(45deg, #28a745, #218838);
-}
-
-#send-invite-btn {
-    background: linear-gradient(45deg, #25D366, #1DA851); /* Cor do WhatsApp */
-}
-
-#add-guest-btn svg,
-#generate-invite-btn svg,
-#send-invite-btn svg {
-    margin-right: 5px;
-    stroke: #fff;
-}
-
-#add-guest-btn:hover {
-    background: linear-gradient(45deg, #0056b3, #003f7f);
-}
-
-#generate-invite-btn:hover {
-    background: linear-gradient(45deg, #218838, #1e7e34);
-}
-
-#send-invite-btn:hover {
-    background: linear-gradient(45deg, #1DA851, #128C7E);
-}
-
-#generate-invite-btn:disabled,
-#send-invite-btn:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
-}
-
-#generate-invite-btn:disabled:hover,
-#send-invite-btn:disabled:hover {
-    background: #cccccc;
-}
-
+/* Seção do Convite Gerado */
 .invitation-section {
-    background-color: #fff;
     padding: 20px;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    border-radius: 0; /* Remove bordas arredondadas para tela cheia */
-    box-sizing: border-box;
 }
 
-.invitation-section h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.invitation-section p {
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.invitation-section ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.invitation-section ul li {
-    margin-bottom: 5px;
-    font-size: 16px;
-}
-
-/* Efeitos de Hover e Sombras */
-input[type="date"]:focus,
-.guest-name:focus {
-    border-color: #80bdff;
-    outline: none;
-}
-
-#generate-invite-btn:focus,
-#add-guest-btn:focus,
-#send-invite-btn:focus,
-.remove-guest-btn:focus {
-    outline: none;
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-    .container {
-        padding: 0;
-    }
-
-    .form-section {
-        padding: 15px;
-    }
-
-    .guest-input {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .guest-input .guest-name {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    #add-guest-btn,
-    #generate-invite-btn,
-    #send-invite-btn {
-        font-size: 14px;
-        padding: 8px 10px;
-    }
-
-    .invitation-section h2 {
-        font-size: 20px;
-    }
-
-    .invitation-section p,
-    .invitation-section ul li {
-        font-size: 14px;
-    }
-
-    .header-image img {
-        border-radius: 0;
-    }
-}
-
-/* Div para tela cheia em smartphones */
-@media (max-width: 400px) {
-    html, body {
-        height: 100%;
-    }
-
-    .container {
-        padding: 0;
-    }
-
-    .form-section {
-        padding: 10px;
-    }
-
-    input[type="date"],
-    .guest-name {
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    #add-guest-btn,
-    #generate-invite-btn,
-    #send-invite-btn {
-        padding: 10px;
-        font-size: 14px;
-    }
-
+@media (max-width: 576px) {
     .invitation-section {
-        padding: 15px;
+        padding: 10px;
     }
 }
