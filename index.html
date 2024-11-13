@@ -46,18 +46,24 @@
                                 <div id="guest-inputs" class="mb-2">
                                     <!-- Campos de convidados serão adicionados aqui -->
                                 </div>
-                                <button type="button" class="btn btn-primary me-2" id="add-guest-btn">
-                                    <i class="bi bi-plus-circle me-1"></i> Adicionar Convidado
-                                </button>
-                                <button type="button" class="btn btn-success me-2" id="generate-invite-btn">
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary" id="add-guest-btn">
+                                        <i class="bi bi-plus-circle me-1"></i> Adicionar Convidado
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback d-block" id="guest-error">
+                                    Limite de 4 convidados atingido.
+                                </div>
+                            </div>
+
+                            <!-- Botões de Ação -->
+                            <div class="d-flex justify-content-center gap-2">
+                                <button type="button" class="btn btn-success" id="generate-invite-btn">
                                     <i class="bi bi-card-text me-1"></i> Gerar Convite
                                 </button>
                                 <button type="button" class="btn btn-success" id="send-invite-btn" disabled>
                                     <i class="bi bi-whatsapp me-1"></i> Enviar Convite
                                 </button>
-                                <div class="invalid-feedback d-block" id="guest-error">
-                                    Limite de 4 convidados atingido.
-                                </div>
                             </div>
                         </form>
                     </div>
