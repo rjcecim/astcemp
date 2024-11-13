@@ -1,88 +1,79 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const addGuestBtn = document.getElementById('add-guest-btn');
     const guestInputsDiv = document.getElementById('guest-inputs');
     const generateInviteBtn = document.getElementById('generate-invite-btn');
     const sendInviteBtn = document.getElementById('send-invite-btn');
     const invitationSection = document.getElementById('invitation-section');
     const dateInput = document.getElementById('event-date');
-    const dateError = document.getElementById('date-error');
+    const dateError = dateInput.nextElementSibling;
     const guestError = document.getElementById('guest-error');
+    const formattedDateSpan = document.getElementById('formatted-date');
+    const guestList = document.getElementById('guest-list');
 
     let guestCount = 0;
+    const maxGuests = 4;
     let invitationGenerated = false;
     let invitationText = '';
 
-    const maxGuests = 4; // Alterado para 4 convidados
-
-    function updateGuestError() {
+    // Função para adicionar um campo de convidado
+    const addGuestInput = () => {
         if (guestCount >= maxGuests) {
-            guestError.textContent = `Limite de ${maxGuests} convidados atingido.`;
             guestError.style.display = 'block';
-        } else {
-            guestError.style.display = 'none';
-        }
-    }
-
-    function addGuestInput() {
-        if (guestCount >= maxGuests) {
-            updateGuestError();
             return;
         }
 
-        const guestInputDiv = document.createElement('div');
-        guestInputDiv.classList.add('guest-input');
+        const guestDiv = document.createElement('div');
+        guestDiv.classList.add('input-group', 'mb-2');
 
         const guestInput = document.createElement('input');
         guestInput.type = 'text';
-        guestInput.classList.add('guest-name');
+        guestInput.classList.add('form-control', 'guest-name');
         guestInput.placeholder = 'Nome do Convidado';
+        guestInput.required = true;
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
-        removeBtn.classList.add('remove-guest-btn');
-        // Ícone de lixeira
-        removeBtn.innerHTML = `
-            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 5l1 9h8l1-9M5 5V4a1 1 0 011-1h4a1 1 0 011 1v1M1 5h14" stroke="#dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        `;
-        removeBtn.addEventListener('click', function() {
-            guestInputsDiv.removeChild(guestInputDiv);
+        removeBtn.classList.add('btn', 'btn-danger');
+        removeBtn.innerHTML = '<i class="bi bi-trash"></i>';
+        removeBtn.addEventListener('click', () => {
+            guestInputsDiv.removeChild(guestDiv);
             guestCount--;
-            updateGuestError();
+            guestError.style.display = guestCount >= maxGuests ? 'block' : 'none';
         });
 
-        guestInputDiv.appendChild(guestInput);
-        guestInputDiv.appendChild(removeBtn);
-
-        guestInputsDiv.appendChild(guestInputDiv);
+        guestDiv.appendChild(guestInput);
+        guestDiv.appendChild(removeBtn);
+        guestInputsDiv.appendChild(guestDiv);
 
         guestCount++;
-        updateGuestError();
-    }
+        guestError.style.display = guestCount >= maxGuests ? 'block' : 'none';
+    };
 
+    // Adicionar o primeiro campo de convidado ao carregar a página
+    addGuestInput();
+
+    // Evento para adicionar mais convidados
     addGuestBtn.addEventListener('click', addGuestInput);
 
-    generateInviteBtn.addEventListener('click', function() {
+    // Função para gerar o convite
+    generateInviteBtn.addEventListener('click', () => {
+        // Resetar mensagens de erro
         let isValid = true;
-
-        // Validação da data
         if (dateInput.value === '') {
-            dateError.style.display = 'block';
+            dateInput.classList.add('is-invalid');
             isValid = false;
         } else {
-            dateError.style.display = 'none';
+            dateInput.classList.remove('is-invalid');
         }
 
-        // Validação dos convidados
-        const guestNames = [];
         const guestNameInputs = document.querySelectorAll('.guest-name');
-        guestNameInputs.forEach(function(input) {
+        const guestNames = [];
+        guestNameInputs.forEach(input => {
             if (input.value.trim() === '') {
+                input.classList.add('is-invalid');
                 isValid = false;
-                input.classList.add('input-error');
             } else {
-                input.classList.remove('input-error');
+                input.classList.remove('is-invalid');
                 guestNames.push(input.value.trim());
             }
         });
@@ -95,73 +86,43 @@ document.addEventListener('DOMContentLoaded', function() {
             guestError.style.display = 'none';
         }
 
-        if (!isValid) {
-            return;
-        }
+        if (!isValid) return;
 
-        // Gerar Convite
-        invitationSection.innerHTML = '';
-        const inviteTitle = document.createElement('h2');
-        inviteTitle.textContent = 'Convite';
-        invitationSection.appendChild(inviteTitle);
-
-        const memberName = document.createElement('p');
-        memberName.innerHTML = '<strong>Nome do Associado:</strong> Ruy Jorge Cecim Santos';
-        invitationSection.appendChild(memberName);
-
-        const memberNumber = document.createElement('p');
-        memberNumber.innerHTML = '<strong>Matrícula do Sócio:</strong> 0101093';
-        invitationSection.appendChild(memberNumber);
-
-        // Formatar data para DD/MM/AAAA
+        // Formatar a data para DD/MM/AAAA
         const dateParts = dateInput.value.split('-');
-        const formattedDate = dateParts[2] + '/' + dateParts[1] + '/' + dateParts[0];
+        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+        formattedDateSpan.textContent = formattedDate;
 
-        const eventDate = document.createElement('p');
-        eventDate.innerHTML = '<strong>Data do Evento:</strong> ' + formattedDate;
-        invitationSection.appendChild(eventDate);
-
-        const guestListTitle = document.createElement('p');
-        guestListTitle.innerHTML = '<strong>Lista de Convidados:</strong>';
-        invitationSection.appendChild(guestListTitle);
-
-        const guestList = document.createElement('ul');
-        guestNames.forEach(function(name) {
-            const listItem = document.createElement('li');
-            listItem.textContent = name;
-            guestList.appendChild(listItem);
+        // Atualizar a lista de convidados na seção de convite
+        guestList.innerHTML = '';
+        guestNames.forEach(name => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            guestList.appendChild(li);
         });
-        invitationSection.appendChild(guestList);
 
-        // Criar texto do convite para enviar via WhatsApp com formatação
+        // Criar o texto do convite com formatação para WhatsApp
         invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n`;
-        guestNames.forEach(function(name) {
+        guestNames.forEach(name => {
             invitationText += `- ${name}\n`;
         });
+
+        // Mostrar a seção do convite
+        invitationSection.scrollIntoView({ behavior: 'smooth' });
 
         invitationGenerated = true;
         sendInviteBtn.disabled = false;
     });
 
-    sendInviteBtn.addEventListener('click', function() {
+    // Função para enviar o convite via WhatsApp
+    sendInviteBtn.addEventListener('click', () => {
         if (!invitationGenerated) {
             alert('Por favor, gere o convite antes de enviar.');
             return;
         }
 
-        // Codificar o texto do convite para URI
         const encodedText = encodeURIComponent(invitationText);
-
-        // URL do WhatsApp
         const whatsappURL = `https://api.whatsapp.com/send?text=${encodedText}`;
-
-        // Abrir o WhatsApp em uma nova janela
         window.open(whatsappURL, '_blank');
     });
-
-    // Desabilitar o botão "Enviar Convite" inicialmente
-    sendInviteBtn.disabled = true;
-
-    // Adicionar primeiro campo de convidado ao carregar a página
-    addGuestInput();
 });
