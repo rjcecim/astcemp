@@ -1,4 +1,3 @@
-/* Importação das fontes */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
 
 body {
@@ -8,14 +7,28 @@ body {
     padding: 0;
 }
 
+.container-app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+}
+
 .header-image img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: contain;
 }
 
 .form-section {
-    /* Remover padding adicional para garantir que a seção fique colada à imagem e ao convite */
     padding: 0;
 }
 
@@ -65,7 +78,6 @@ input.is-invalid {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    /* Garantir que a seção do convite esteja colada à seção do formulário */
     margin-top: 0;
 }
 
@@ -90,7 +102,6 @@ input.is-invalid {
     font-size: 16px;
 }
 
-/* Efeitos de Hover e Sombras */
 input[type="date"]:focus,
 .guest-name:focus {
     border-color: #80bdff;
@@ -104,14 +115,49 @@ input[type="date"]:focus,
     outline: none;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-    .container-fluid {
-        padding: 0;
+.append-btn .bi {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.append-btn:hover .bi {
+    color: #dc3545;
+}
+
+#add-guest-btn .bi {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+#add-guest-btn:hover .bi {
+    color: #28a745;
+}
+
+@media (min-width: 1024px) {
+    .container-app {
+        max-width: 600px;
     }
 
-    .form-section {
-        padding: 0;
+    .header-image img {
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 1023px) {
+    .container-app {
+        padding: 15px;
+    }
+
+    .header-image img {
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 600px) {
+    .container-app {
+        padding: 10px;
     }
 
     .form-label {
@@ -132,14 +178,13 @@ input[type="date"]:focus,
     }
 }
 
-/* Div para tela cheia em smartphones */
 @media (max-width: 400px) {
     html, body {
         height: 100%;
     }
 
-    .form-section {
-        padding: 0;
+    .container-app {
+        padding: 5px;
     }
 
     input.form-control {

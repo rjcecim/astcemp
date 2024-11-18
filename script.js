@@ -8,11 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const guestError = document.getElementById('guest-error');
 
     const maxGuests = 4;
-    let guestCount = 1; // Começa com 1 porque o primeiro convidado já está presente
+    let guestCount = 1;
     let invitationGenerated = false;
     let invitationText = '';
 
-    // Função para atualizar a mensagem de erro de convidados
     const updateGuestError = () => {
         if (guestCount >= maxGuests) {
             guestError.style.display = 'block';
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Função para adicionar um novo campo de convidado
     const addGuestInput = () => {
         if (guestCount >= maxGuests) {
             updateGuestError();
@@ -48,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
             guestInputsDiv.removeChild(guestInputGroup);
             guestCount--;
             updateGuestError();
-            // Reabilitar o botão de adicionar caso o limite foi anteriormente atingido
             const firstAddBtn = document.getElementById('add-guest-btn');
             if (firstAddBtn && firstAddBtn.disabled && guestCount < maxGuests) {
                 firstAddBtn.disabled = false;
@@ -64,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         guestCount++;
         updateGuestError();
 
-        // Se já atingiu o máximo, desativa o botão de adicionar no primeiro convidado
         if (guestCount >= maxGuests) {
             const firstAddBtn = document.getElementById('add-guest-btn');
             if (firstAddBtn) {
@@ -74,15 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Evento para adicionar convidados via botão de adição
     const addGuestBtn = document.getElementById('add-guest-btn');
     addGuestBtn.addEventListener('click', addGuestInput);
 
-    // Função para gerar o convite
     const generateInvite = () => {
         let isValid = true;
 
-        // Validação da data
         if (dateInput.value === '') {
             dateInput.classList.add('is-invalid');
             dateError.style.display = 'block';
@@ -92,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dateError.style.display = 'none';
         }
 
-        // Validação dos convidados
         const guestNames = [];
         const guestNameInputs = document.querySelectorAll('.guest-name');
 
@@ -122,11 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Formatar data para DD/MM/AAAA
         const dateParts = dateInput.value.split('-');
         const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
 
-        // Gerar o conteúdo do convite na página
         invitationSection.innerHTML = `
             <h2>Convite</h2>
             <p><strong>Nome do Associado:</strong> Ruy Jorge Cecim dos Santos</p>
@@ -138,17 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
             </ul>
         `;
 
-        // Gerar o texto do convite para enviar via WhatsApp com formatação
         invitationText = `*Convite*\n\n*Nome do Associado:* Ruy Jorge Cecim dos Santos\n*Matrícula do Sócio:* 0101093\n*Data do Evento:* ${formattedDate}\n\n*Lista de Convidados:*\n${guestNames.map(name => `- ${name}`).join('\n')}`;
 
         invitationGenerated = true;
         sendInviteBtn.disabled = false;
     };
 
-    // Evento para gerar convite
     generateInviteBtn.addEventListener('click', generateInvite);
 
-    // Função para enviar o convite via WhatsApp
     const sendInvite = () => {
         if (!invitationGenerated) {
             alert('Por favor, gere o convite antes de enviar.');
@@ -161,6 +148,5 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(whatsappURL, '_blank');
     };
 
-    // Evento para enviar convite
     sendInviteBtn.addEventListener('click', sendInvite);
 });
