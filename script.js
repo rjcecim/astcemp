@@ -149,4 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     sendInviteBtn.addEventListener('click', sendInvite);
+
+    updateGuestError();
 });
